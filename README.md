@@ -3,10 +3,10 @@
 - [ ] Fix alligning average number of neighbours for households
 - [x] Fix changing current state issue
 - [ ] Set proper S->E transition probability
-- [ ] Add events
+- [x] Add events
 - [ ] Add restriction hor I2 (stay at home)
 - [ ] Add restriction hor H (stay at hospital)
 - [x] implement evauation for CHANGE_STATE
 - [ ] implement evauation for LOCKDOWN
-- [ ] implement evauation for WORLD_EVENT
+- [x] implement evauation for WORLD_EVENT
 - [ ] Allign time spent distribution with daily restriction for household and weekly restriction for job
