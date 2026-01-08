@@ -4,8 +4,8 @@
 - [x] Fix changing current state issue
 - [ ] Set proper S->E transition probability
 - [x] Add events
-- [ ] Add restriction hor I2 (stay at home)
-- [ ] Add restriction hor H (stay at hospital)
+- [x] Add restriction hor I2 (stay at home)
+- [x] Add restriction hor H (stay at hospital)
 - [x] implement evauation for CHANGE_STATE
 - [ ] implement evauation for LOCKDOWN
 - [x] implement evauation for WORLD_EVENT
