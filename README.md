@@ -1,6 +1,6 @@
 # TODO
 - [x] Implement network
-- [ ] Fix alligning average number of neighbours for households
+- [x] Fix alligning average number of neighbours for households
 - [x] Fix changing current state issue
 - [ ] Set proper S->E transition probability
 - [x] Add events
