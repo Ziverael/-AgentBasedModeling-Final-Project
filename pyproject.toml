@@ -1,0 +1,56 @@
+[project]
+name="studies2"
+requires-python = ">= 3.12"
+version="0.1"
+dependencies = [
+    "altair==5.5.0",
+    "bokeh>=3.8.0",
+    "cv>=1.0.0",
+    "datasets>=4.4.1",
+    "googletrans==4.0.2",
+    "ipykernel>=6.30.1",
+    "jupyter>=1.1.1",
+    "jupyter-cache>=1.0.1",
+    "jupytext>=1.17.3",
+    "marimo==0.16.3",
+    "matplotlib>=3.10.6",
+    "morfeusz2>=1.99.12",
+    "networkx==3.5",
+    "nltk>=3.9.2",
+    "numpy==2.3.3",
+    "opencv-python>=4.11.0.86",
+    "pandas==2.3.2",
+    "pl-core-news-md",
+    "plotly>=6.5.0",
+    "polars==1.33.1",
+    "pydantic==2.11.9",
+    "pydantic-settings>=2.11.0",
+    "pyomo>=6.9.5",
+    "pyvis>=0.3.2",
+    "ruff==0.13.2",
+    "scikit-learn>=1.7.2",
+    "scipy>=1.16.2",
+    "seaborn>=0.13.2",
+    "spacy>=3.8.9",
+    "sqlalchemy>=2.0.43",
+    "stopwordsiso>=0.6.1",
+    "tensorflow>=2.20.0",
+    "tqdm==4.67.1",
+    "vega-datasets==0.9.0",
+    "wn>=0.13.0",
+    "wordcloud>=1.9.4",
+]
+
+
+[tool.marimo.formatting]
+line_length = 120
+
+[tool.marimo.display]
+default_width = "full"
+
+[tool.marimo.runtime]
+theme = "dark"
+cell_output = "below"
+
+[tool.uv.sources]
+pl-core-news-md = { url = "https://github.com/explosion/spacy-models/releases/download/pl_core_news_md-3.8.0/pl_core_news_md-3.8.0-py3-none-any.whl" }
