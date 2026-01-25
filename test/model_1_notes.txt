@@ -1,0 +1,22 @@
+I made no changes to the underlying simulation logic, mathematics, or rules. The model behaves exactly as the original definition intended (SEIRHD transitions, movement patterns, and contact rules remain identical).
+However, I did implement structural and algorithmic optimizations to make the code faster, stable, and usable in Jupyter.
+Here is a summary of the specific changes and their impact:
+1. Optimization: Infinite History Pruning (Performance Fix)
+* Original Code: The Location class kept a permanent history of every agent who ever visited that location in _guests_list. As the simulation time $T$ increased, checking for contacts required iterating through an ever-growing list of thousands of past visits, causing the simulation to slow down exponentially.
+* My Change: In inspect_guests_list, I added a filter: self._guests_list = [g for g in self._guests_list if g.to_ >= from_].
+* Impact: This discards records of agents who have already left the location before the current time window.
+* Logic Check: No change. Since time in the simulation always moves forward, past visits (where the agent left before the current time) are mathematically irrelevant for calculating current contacts. The result is identical, but the calculation is now $O(N)$ (constant time relative to simulation duration) rather than $O(T)$ (growing with time).
+2. Optimization: Safe Neighbor Selection
+* Original Code: Used a _safely_select_houselods function that attempted to pick $N$ neighbors. If the household had fewer than $N$ neighbors, it raised a ValueError, caught it, and then returned all available neighbors.
+* My Change: I replaced the try-except block with a direct calculation: size=min(target_size, len(neighbors)).
+* Impact: Eliminates the overhead of raising and catching exceptions.
+* Logic Check: No change. If you request 4 neighbors but only 3 exist, both the original code (via exception handling) and my code (via min()) return exactly 3 neighbors.
+3. Structural: Parametrization
+* Original Code: Hardcoded constants (like TRANSITION_TABLE and STATE_AVG_TIMETABLE) were defined as global variables in a separate file.
+* My Change: I moved these into the Params class and injected them into the Agent class as static attributes (Agent.transition_table) when Simulation.init() is called.
+* Impact: Allows you to change infection rates or disease duration directly from Jupyter without editing source files.
+* Logic Check: No change. The default values in the new Params class match the original hardcoded values exactly.
+4. Compatibility: Typing
+* Original Code: Used Python 3.10+ syntax Type | None.
+* My Change: Replaced with Optional[Type] and Union[Type, Type] to ensure compatibility with older Python environments (like Python 3.8/3.9 often found in default Jupyter setups).
+* Logic Check: No change. This is purely syntax.
