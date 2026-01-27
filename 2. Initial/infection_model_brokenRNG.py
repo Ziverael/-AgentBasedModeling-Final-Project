@@ -26,13 +26,10 @@ DAY_HOURS: Final[int] = 24
 
 # --- BATCH RNG (Fastest Python Randomness) ---
 class BatchRNG:
-    # Added '_py_random' to slots
-    __slots__ = ('_rng', '_logistic_buffer', '_logistic_idx', '_float_buffer', '_float_idx', '_buf_size', '_py_random')
+    __slots__ = ('_rng', '_logistic_buffer', '_logistic_idx', '_float_buffer', '_float_idx', '_buf_size')
     
     def __init__(self, seed: Optional[int] = None, buf_size: int = 100000):
         self._rng = np.random.default_rng(seed)
-        # Initialize a dedicated Random instance to ensure 'choice' and 'sample' are reproducible
-        self._py_random = random.Random(seed)
         self._buf_size = buf_size
         self._logistic_buffer = np.empty(0)
         self._logistic_idx = 0
@@ -64,12 +61,10 @@ class BatchRNG:
         return val
     
     def choice(self, seq: List[Any]) -> Any:
-        # Use the internal seeded instance instead of global random
-        return self._py_random.choice(seq)
+        return random.choice(seq)
         
     def sample(self, population: List[Any], k: int) -> List[Any]:
-        # Use the internal seeded instance instead of global random
-        return self._py_random.sample(population, k)
+        return random.sample(population, k)
 
 # --- Enums ---
 class AgentState(Flag):
